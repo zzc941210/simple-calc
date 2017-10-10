@@ -8,13 +8,13 @@
 
 import Foundation
 
-func getInt() -> Int {
+func getDouble() -> Double {
     let response = readLine(strippingNewline: true)!
-    return Int(response)!
+    return Double(response)!
 }
 
-func doOp(op: String, first: Int, second: Int) -> Int {
-    var result : Int
+func doOp(op: String, first: Double, second: Double) -> Double {
+    var result : Double
     switch op {
     case "+":
         result = first + second
@@ -25,14 +25,14 @@ func doOp(op: String, first: Int, second: Int) -> Int {
     case "/":
         result = first / second
     case "%":
-        result = first % second
+        result = Double(Int(first) % Int(second))
     default:
         result = 0
     }
     return result
 }
 
-func fact(num : Int) -> Int {
+func fact(num : Double) -> Double {
     if (num == 0) {
         return 1
     }
@@ -45,9 +45,9 @@ print("Enter an expression separated by returns:")
 let response = readLine(strippingNewline: true)!
 let responseArr = response.characters.split(separator: " ").map(String.init)
 if (responseArr.count == 1) {
-    let firstNum = Int(response)!
+    let firstNum = Double(response)!
     let op = readLine(strippingNewline: true)!
-    let secondNum = getInt()
+    let secondNum = getDouble()
     let result = doOp(op: op, first: firstNum, second: secondNum)
     print("Result: \(result)")
 } else {
@@ -55,9 +55,9 @@ if (responseArr.count == 1) {
     case "count":
         print(responseArr.count - 1)
     case "avg":
-        var sum = 0
+        var sum = 0.0
         for i in 0...(responseArr.count - 2) {
-            sum += Int(responseArr[i])!
+            sum += Double(responseArr[i])!
         }
         print(Double(sum) / Double(responseArr.count - 1))
     case "fact":
@@ -65,7 +65,7 @@ if (responseArr.count == 1) {
             print("fact can only accept one number")
             break
         }
-        print(fact(num : Int(responseArr[0])!))
+        print(fact(num : Double(responseArr[0])!))
     default:
         print("not support")
     }
