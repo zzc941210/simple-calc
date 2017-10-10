@@ -8,11 +8,15 @@
 
 import Foundation
 
+// get double from console
 func getDouble() -> Double {
     let response = readLine(strippingNewline: true)!
     return Double(response)!
 }
 
+// take op as string, and two doudle as parameter
+// return the result first op second.
+// if op is not valid, return 0 as result
 func doOp(op: String, first: Double, second: Double) -> Double {
     var result : Double
     switch op {
@@ -32,25 +36,27 @@ func doOp(op: String, first: Double, second: Double) -> Double {
     return result
 }
 
-func fact(num : Double) -> Double {
+// retrun fact of given int
+func fact(num : Int) -> Int {
     if (num == 0) {
         return 1
     }
     return num * fact(num : num - 1)
 }
 
+//---------------------
 // main start from here
+//---------------------
 print("Enter an expression separated by returns:")
-
 let response = readLine(strippingNewline: true)!
 let responseArr = response.characters.split(separator: " ").map(String.init)
-if (responseArr.count == 1) {
+if (responseArr.count == 1) { // no space, one number
     let firstNum = Double(response)!
     let op = readLine(strippingNewline: true)!
     let secondNum = getDouble()
     let result = doOp(op: op, first: firstNum, second: secondNum)
     print("Result: \(result)")
-} else {
+} else { // more than one stuff pass in
     switch responseArr[responseArr.count - 1] {
     case "count":
         print(responseArr.count - 1)
@@ -65,9 +71,9 @@ if (responseArr.count == 1) {
             print("fact can only accept one number")
             break
         }
-        print(fact(num : Double(responseArr[0])!))
+        print(fact(num : Int(responseArr[0])!))
     default:
-        print("not support")
+        print("Not support...")
     }
 }
 
